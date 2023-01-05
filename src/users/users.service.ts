@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -13,6 +13,13 @@ export class UsersService {
   }
 
   findOne(id: number) {
+    const user = {
+      id: 56,
+      u: 's',
+    };
+    //NOTE: Error example
+    if (!user) throw new HttpException(`User ${id} not found`, HttpStatus.NOT_FOUND);
+
     return `This action returns a #${id} user`;
   }
 
