@@ -17,12 +17,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
-      port: 5432,
+      port: parseInt(process.env.DATABASE_PORT || '5432', 10),
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      autoLoadEntities: true, // models will be loaded automatically
-      synchronize: !process.env.PRODUCTION_MODE || false,
+      autoLoadEntities: true,
+      synchronize: process.env.PRODUCTION_MODE === 'true' ? false : true,
     }),
   ],
   controllers: [AppController],
