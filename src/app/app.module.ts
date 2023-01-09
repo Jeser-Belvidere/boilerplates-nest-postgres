@@ -4,6 +4,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { UsersModule } from '../users/users.module';
+import { RolesModule } from 'src/roles/roles.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -11,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TerminusModule,
     HttpModule,
     UsersModule,
+    RolesModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),

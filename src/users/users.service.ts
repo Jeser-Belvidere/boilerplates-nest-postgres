@@ -13,11 +13,20 @@ export class UsersService {
   ) {}
 
   async findAll() {
-    return await this.userRepository.find();
+    return await this.userRepository.find({
+      relations: {
+        roles: true,
+      },
+    });
   }
 
   async findOne(id: string) {
-    const user = await this.userRepository.find({ where: { id: id } });
+    const user = await this.userRepository.find({
+      where: { id: id },
+      relations: {
+        roles: true,
+      },
+    });
 
     if (!user) throw new NotFoundException(`User #${id} not found`);
 
@@ -41,7 +50,7 @@ export class UsersService {
   }
 
   async remove(id: string) {
-    const user = await this.findOne(id);
+    const user = await this.userRepository.find({ where: { id: id } });
     return this.userRepository.remove(user);
   }
 }

@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  JoinTable,
+  ManyToMany,
+} from 'typeorm';
+import { Role } from 'src/roles/entities/role.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -9,6 +17,10 @@ export class User {
 
   @Column()
   lastname: string;
+
+  @JoinTable()
+  @ManyToMany((type) => Role, (role) => role.id)
+  roles: Role[];
 
   @CreateDateColumn()
   created_at: string;
