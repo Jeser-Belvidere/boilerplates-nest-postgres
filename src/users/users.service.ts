@@ -4,6 +4,7 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
+import { PaginationQueryDto } from 'src/common/dto/pagination/pagination-query.dto';
 
 @Injectable()
 export class UsersService {
@@ -12,11 +13,14 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findAll() {
+  async findAll(paginationQuery: PaginationQueryDto) {
+    const { limit, offset } = paginationQuery;
     return await this.userRepository.find({
       relations: {
         roles: true,
       },
+      skip: offset,
+      take: limit,
     });
   }
 

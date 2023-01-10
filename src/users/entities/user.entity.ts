@@ -19,7 +19,11 @@ export class User {
   lastname: string;
 
   @JoinTable()
-  @ManyToMany((type) => Role, (role) => role.id)
+  @ManyToMany(
+    (type) => Role,
+    (role) => role.id,
+    // { cascade: true }, insert and creates new role if not exists
+  )
   roles: Role[];
 
   @CreateDateColumn()

@@ -8,8 +8,12 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       //NOTE: returns 400 error if body not maches with DTO
-      // forbidNonWhitelisted: true,
+      forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: {
+        //transforms objects how described in dto
+        enableImplicitConversion: true,
+      },
     }),
   );
   await app.listen(parseInt(process.env.APP_PORT || '3000', 10), () => {
