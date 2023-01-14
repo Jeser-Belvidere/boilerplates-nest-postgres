@@ -41,3 +41,19 @@ $ Stop containers
 ```bash
 docker-compose down
 ```
+
+## Migrations
+
+Migrations works only in prod mode, when type-cli.config in dist/ folder
+
+Runs all migrations up, which are placed in migration's array at typeorm-cli.config.ts
+
+```
+npm run migrateAll
+```
+
+Rollsback migrations
+
+```
+npm run migrateRollbackAll
+```

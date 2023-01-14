@@ -6,6 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "newMigration": "npx typeorm migration:create",
+    "migrateAll": "npx typeorm migration:run -d dist/typeorm-cli.config",
+    "migrateRollbackAll": "npx typeorm migration:revert -d dist/typeorm-cli.config",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
