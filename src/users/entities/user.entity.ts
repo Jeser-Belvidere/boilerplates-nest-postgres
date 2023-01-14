@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   JoinTable,
   ManyToMany,
+  Index,
 } from 'typeorm';
 import { Role } from 'src/roles/entities/role.entity';
 @Entity()
 export class User {
+  @Index()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
